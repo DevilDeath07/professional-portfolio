@@ -134,7 +134,7 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(350px, 100%), 1fr))', gap: 'clamp(1.5rem, 3vw, 3rem)' }}
         >
           {projects.map((project) => (
             <motion.div
@@ -170,7 +170,7 @@ const Projects = () => {
               </div>
 
               {/* Content Container */}
-              <div style={{ padding: '2.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
+              <div style={{ padding: 'clamp(1.5rem, 3vw, 2.5rem)', flexGrow: 1, display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
                 <h3 style={{ fontSize: '1.6rem', marginBottom: '1rem', fontWeight: 700, letterSpacing: '-0.5px' }}>{project.title}</h3>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', flexGrow: 1, lineHeight: 1.7 }}>{project.desc}</p>
                 

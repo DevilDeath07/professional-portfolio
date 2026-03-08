@@ -6,13 +6,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = ({ theme, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      if (window.innerWidth > 768) setIsOpen(false);
+    };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const navLinks = [
@@ -32,7 +41,7 @@ const Navbar = ({ theme, toggleTheme }) => {
       top: 0,
       left: 0,
       right: 0,
-      height: '80px',
+      height: '70px',
       backgroundColor: scrolled ? 'var(--nav-bg)' : 'transparent',
       backdropFilter: scrolled ? 'blur(10px)' : 'none',
       borderBottom: scrolled ? '1px solid var(--glass-border)' : 'none',
@@ -49,81 +58,116 @@ const Navbar = ({ theme, toggleTheme }) => {
         height: '100%'
       }}>
         {/* Logo */}
-        <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Code2 size={32} color="var(--accent-color)" />
-          <span className="gradient-text" style={{ fontSize: '1.5rem', fontWeight: 800 }}>Bala.Dev</span>
+        <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Code2 size={28} color="var(--accent-color)" />
+          <span className="gradient-text" style={{ fontSize: '1.4rem', fontWeight: 800 }}>Bala.Dev</span>
         </NavLink>
 
         {/* Desktop Menu */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-menu">
-          {window.innerWidth > 768 && navLinks.map(link => (
-            <NavLink 
-              key={link.name} 
-              to={link.path}
-              style={({ isActive }) => ({
-                color: isActive ? 'var(--accent-color)' : 'var(--text-primary)',
-                fontWeight: isActive ? 700 : 500,
-                position: 'relative'
-              })}
+        {!isMobile && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+            {navLinks.map(link => (
+              <NavLink
+                key={link.name}
+                to={link.path}
+                style={({ isActive }) => ({
+                  color: isActive ? 'var(--accent-color)' : 'var(--text-primary)',
+                  fontWeight: isActive ? 700 : 500,
+                  fontSize: '0.95rem',
+                  position: 'relative'
+                })}
+              >
+                {link.name}
+              </NavLink>
+            ))}
+            <button
+              onClick={toggleTheme}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: 'var(--text-primary)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '4px'
+              }}
             >
-              {link.name}
-            </NavLink>
-          ))}
-          <button 
-            onClick={toggleTheme} 
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: 'var(--text-primary)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
-          </button>
-          
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="mobile-toggle"
-            onClick={() => setIsOpen(!isOpen)}
-            style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', display: window.innerWidth <= 768 ? 'block' : 'none' }}
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
+              {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}
+            </button>
+          </div>
+        )}
+
+        {/* Mobile Right Controls */}
+        {isMobile && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <button
+              onClick={toggleTheme}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: 'var(--text-primary)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '4px'
+              }}
+            >
+              {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}
+            </button>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: 'var(--text-primary)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '4px'
+              }}
+            >
+              {isOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Mobile Menu Modal */}
       <AnimatePresence>
-        {isOpen && (
+        {isOpen && isMobile && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -10 }}
             style={{
               position: 'absolute',
-              top: '80px',
+              top: '70px',
               left: 0,
               right: 0,
               background: 'var(--bg-secondary)',
               borderBottom: '1px solid var(--glass-border)',
-              padding: '2rem 5%',
+              padding: '1.5rem 5%',
               display: 'flex',
               flexDirection: 'column',
-              gap: '1.5rem'
+              gap: '0',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
             }}
           >
-            {navLinks.map(link => (
-              <NavLink 
-                key={link.name} 
+            {navLinks.map((link, i) => (
+              <NavLink
+                key={link.name}
                 to={link.path}
                 onClick={closeMenu}
                 style={({ isActive }) => ({
                   color: isActive ? 'var(--accent-color)' : 'var(--text-primary)',
                   fontWeight: isActive ? 700 : 500,
-                  fontSize: '1.2rem'
+                  fontSize: '1.1rem',
+                  padding: '0.9rem 0',
+                  borderBottom: i < navLinks.length - 1 ? '1px solid var(--glass-border)' : 'none',
+                  display: 'block'
                 })}
               >
                 {link.name}

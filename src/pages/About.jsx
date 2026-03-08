@@ -29,12 +29,12 @@ const About = () => {
         About <span className="gradient-text">Me</span>
       </motion.h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 'clamp(2rem, 4vw, 4rem)', alignItems: 'center' }}>
         
         {/* Left Side: Animated Image or Shape */}
         <motion.div 
           className="glass-panel"
-          style={{ padding: '3rem', height: '100%', position: 'relative', overflow: 'hidden', borderLeft: '4px solid var(--accent-color)' }}
+          style={{ padding: 'clamp(1.5rem, 3vw, 3rem)', height: '100%', position: 'relative', overflow: 'hidden', borderLeft: '4px solid var(--accent-color)' }}
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -55,7 +55,7 @@ const About = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          style={{ display: 'grid', gap: '2rem', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}
+          style={{ display: 'grid', gap: 'clamp(1rem, 3vw, 2rem)', gridTemplateColumns: 'repeat(auto-fit, minmax(min(180px, 100%), 1fr))' }}
         >
           {[
             { title: 'Education', value: 'B.Tech IT' },

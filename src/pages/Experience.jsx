@@ -37,7 +37,7 @@ const Experience = () => {
         {mockExperience.map((exp, i) => (
           <motion.div 
             key={exp.id}
-            style={{ display: 'flex', gap: '2.5rem', marginBottom: '4rem', position: 'relative', zIndex: 1 }}
+            style={{ display: 'flex', gap: 'clamp(1rem, 3vw, 2.5rem)', marginBottom: '3rem', position: 'relative', zIndex: 1 }}
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.2 }}
@@ -56,7 +56,7 @@ const Experience = () => {
             <motion.div 
               whileHover={{ y: -5, boxShadow: '0 15px 30px rgba(0,0,0,0.4)', borderColor: 'var(--accent-color)' }}
               className="glass-panel" 
-              style={{ padding: '2.5rem', flexGrow: 1, position: 'relative', borderRadius: 'var(--border-radius-lg)', border: '1px solid var(--glass-border)', transition: 'border-color 0.3s ease' }}
+              style={{ padding: 'clamp(1.2rem, 3vw, 2.5rem)', flexGrow: 1, position: 'relative', borderRadius: 'var(--border-radius-lg)', border: '1px solid var(--glass-border)', transition: 'border-color 0.3s ease' }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
                 <div>

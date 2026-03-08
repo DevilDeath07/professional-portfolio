@@ -147,7 +147,7 @@ const Skills = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 'clamp(1.5rem, 3vw, 2.5rem)' }}
         >
           {skillCategories.map((category) => (
             <motion.div 

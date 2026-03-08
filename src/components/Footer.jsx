@@ -8,7 +8,7 @@ const Footer = () => {
     <footer style={{
       background: 'var(--bg-secondary)',
       borderTop: '1px solid var(--glass-border)',
-      padding: '5rem 5% 2rem',
+      padding: 'clamp(2.5rem, 5vw, 5rem) 5% 2rem',
       marginTop: 'auto',
       position: 'relative',
       overflow: 'hidden'
@@ -26,8 +26,8 @@ const Footer = () => {
         {/* Main Footer Content - Grid Layout */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '4rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))',
+          gap: 'clamp(2rem, 4vw, 4rem)',
           marginBottom: '4rem'
         }}>
           

@@ -64,14 +64,14 @@ const Contact = () => {
         Get in <span className="gradient-text">Touch</span>
       </motion.h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '4rem', maxWidth: '1200px', margin: '0 auto', alignItems: 'flex-start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: 'clamp(2rem, 5vw, 4rem)', maxWidth: '1200px', margin: '0 auto', alignItems: 'flex-start' }}>
         
         {/* Contact Info */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          style={{ position: 'sticky', top: '100px' }}
+          style={{ position: 'relative', top: 'auto' }}
         >
           <h3 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', fontWeight: 800 }}>Let's talk about your <span style={{ color: 'var(--accent-color)' }}>project.</span></h3>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
@@ -110,7 +110,7 @@ const Contact = () => {
         {/* Contact Form */}
         <motion.div
           className="glass-panel"
-          style={{ padding: '3.5rem', borderRadius: 'var(--border-radius-lg)', position: 'relative', overflow: 'hidden' }}
+          style={{ padding: 'clamp(1.5rem, 4vw, 3.5rem)', borderRadius: 'var(--border-radius-lg)', position: 'relative', overflow: 'hidden' }}
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}

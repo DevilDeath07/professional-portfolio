@@ -82,7 +82,7 @@ a {
 
 .main-content {
   flex-grow: 1;
-  padding-top: 80px; /* offset for fixed navbar */
+  padding-top: 70px; /* offset for fixed navbar */
 }
 
 /* Glassmorphism Classes */
@@ -209,47 +209,100 @@ a {
   background: var(--accent-color);
 }
 
-/* Media Queries for full responsiveness */
+/* ==============================
+   RESPONSIVE MEDIA QUERIES
+   ============================== */
+
+/* Tablet landscape */
+@media screen and (max-width: 1024px) {
+  .page-section {
+    padding: 70px 6%;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Tablet portrait / large phones */
 @media screen and (max-width: 768px) {
   .page-section {
-    padding: 60px 5%;
+    padding: 50px 5%;
   }
-  
+
   .section-title {
-    font-size: 2rem;
+    font-size: 1.9rem;
     margin-bottom: 2rem;
-  }
-  
-  .desktop-menu {
-    display: none !important;
-  }
-  
-  .mobile-toggle {
-    display: block !important;
   }
 
   h1 {
     font-size: 2.5rem !important;
   }
 
-  .btn-primary, .btn-outline {
+  h2 {
+    font-size: 1.8rem !important;
+  }
+
+  h3 {
+    font-size: 1.3rem !important;
+  }
+
+  /* Buttons stack on mobile */
+  .home-btn-group {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .btn-primary,
+  .btn-outline {
     width: 100%;
-    margin-bottom: 10px;
+    justify-content: center;
+  }
+
+  /* Reduce glow blob sizes */
+  .glow-background {
+    width: 300px;
+    height: 300px;
   }
 }
 
+/* Small phones */
 @media screen and (max-width: 480px) {
   .page-section {
-    padding: 40px 5%;
+    padding: 40px 4%;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
   }
 
   h1 {
     font-size: 2rem !important;
   }
-  
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  h3 {
+    font-size: 1.15rem !important;
+  }
+
   .glow-background {
-    width: 300px;
-    height: 300px;
-    opacity: 0.6;
+    width: 200px;
+    height: 200px;
+    opacity: 0.5;
+  }
+}
+
+/* Very small phones */
+@media screen and (max-width: 360px) {
+  .page-section {
+    padding: 35px 4%;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
   }
 }
