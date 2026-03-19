@@ -3,6 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Code, Globe } from 'lucide-react';
 
 const mockProjects = [
+ { 
+  id: 11, 
+  title: 'AI-Based Bug Finder', 
+  desc: 'AI-powered web application that analyzes user-submitted code and provides real-time debugging suggestions. Detects syntax and logical errors using Firebase backend and AI APIs.', 
+  image: '', 
+  tech: ['HTML', 'CSS', 'JavaScript','Python', 'Firebase', 'FastAPI', 'AI APIs'],
+  code: "https://github.com/DevilDeath07/Bug-finder-agent",
+  demo: 'https://bug-finder-agent.vercel.app/'
+},
   { 
     id: 10, 
     title: 'MERN Stack Portfolio', 
