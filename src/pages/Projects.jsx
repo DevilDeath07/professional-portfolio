@@ -7,7 +7,7 @@ const mockProjects = [
   id: 11, 
   title: 'AI-Based Bug Finder', 
   desc: 'AI-powered web application that analyzes user-submitted code and provides real-time debugging suggestions. Detects syntax and logical errors using Firebase backend and AI APIs.', 
-  image: '', 
+  image: './data/Screenshot 2026-04-19 222545.png', 
   tech: ['HTML', 'CSS', 'JavaScript','Python', 'Firebase', 'FastAPI', 'AI APIs'],
   code: "https://github.com/DevilDeath07/Bug-finder-agent",
   demo: 'https://bug-finder-agent.vercel.app/'
